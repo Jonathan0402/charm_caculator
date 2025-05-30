@@ -98,3 +98,13 @@ button {
         font-size: 18px;
     }
 }
+td.from {
+    background-color: #e8f4fd;
+}
+td.to {
+    background-color: #fff2e6;
+}
+.separator {
+    width: 1px;
+    background-color: #ccc;
+}
