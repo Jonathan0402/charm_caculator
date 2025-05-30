@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-    padding: 40px 60px;
+    padding: 40px 20px;
 }
 
 h1 {
@@ -29,6 +29,7 @@ nav a {
 .content {
     display: flex;
     gap: 50px;
+    flex-wrap: wrap;
 }
 
 section {
@@ -64,4 +65,36 @@ button {
 #result {
     margin-top: 20px;
     font-weight: bold;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    table select {
+        width: 40px;
+    }
+
+    th, td {
+        padding: 4px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    nav {
+        font-size: 14px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 18px;
+    }
 }
