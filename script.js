@@ -33,18 +33,22 @@ function calculate() {
     const allSelects = document.querySelectorAll("#charmForm select");
     const results = { manual: 0, blueprint: 0, book: 0 };
 
+    // 每 6 個 select 一組：3 個 From、3 個 To
     for (let i = 0; i < allSelects.length; i += 6) {
-        const from = Math.min(...[...allSelects].slice(i, i + 3).map(s => parseInt(s.value) || 0));
-        const to = Math.max(...[...allSelects].slice(i + 3, i + 6).map(s => parseInt(s.value) || 0));
-        for (let lvl = from; lvl < to; lvl++) {
-            results.manual += upgradeCosts[lvl]?.manual || 0;
-            results.blueprint += upgradeCosts[lvl]?.blueprint || 0;
-            results.book += upgradeCosts[lvl]?.book || 0;
+        for (let j = 0; j < 3; j++) {
+            const from = parseInt(allSelects[i + j].value) || 0;
+            const to = parseInt(allSelects[i + 3 + j].value) || 0;
+
+            for (let lvl = from; lvl < to; lvl++) {
+                results.manual += upgradeCosts[lvl]?.manual || 0;
+                results.blueprint += upgradeCosts[lvl]?.blueprint || 0;
+                results.book += upgradeCosts[lvl]?.book || 0;
+            }
         }
     }
 
     document.getElementById("result").innerHTML = `
-    <p><strong>Total Needed:</strong></p>
+    <p><strong>所需總材料：</strong></p>
     <ul>
       <li>Charm Design (手冊): ${results.manual}</li>
       <li>Charm Guide (圖紙): ${results.blueprint}</li>
@@ -52,3 +56,4 @@ function calculate() {
     </ul>
   `;
 }
+
